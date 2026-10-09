@@ -343,6 +343,7 @@ if __name__ == "__main__":
 
     if args.replot:
         df = pd.read_csv(csv)
+        df["setting"] = df["setting"].fillna("")      # "" round-trips through CSV as NaN
         df.attrs["reps"] = int(df["rep"].max()) + 1
     else:
         df, truth = run(pop, args.reps)
