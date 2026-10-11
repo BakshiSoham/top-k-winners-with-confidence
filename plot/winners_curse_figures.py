@@ -224,6 +224,8 @@ def run(pop, reps, seed=2026):
 #   b  so naive intervals fail on exactly those picks, ours do not;
 #   c  and ours is the shortest valid interval at a given selection quality.
 OURS_Q = "q=1"                          # the paper's default regret budget
+# Shown in the figure title. Change it when build_population() holds real counts.
+POPULATION_LABEL = "SYNTHETIC megastudy (not real data)"
 RANK_BINS = [(1, 3, "1–3\n(deserved)"), (4, 6, "4–6"),
              (7, 10, "7–10"), (11, 99, "11+")]
 
@@ -317,8 +319,8 @@ def figure_summary(df, truth, path):
     ax.set_ylabel("mean interval length (pp)")
     _panel_title(ax, "c", "Ours: shortest valid interval")
 
-    fig.suptitle("Which nudge should we scale?  Top 3 of 22 arms, "
-                 f"{reps} re-runs of a 10% megastudy, 90% intervals",
+    fig.suptitle(f"{POPULATION_LABEL}: top 3 of 22 arms, "
+                 f"{reps} re-runs of a 10% subsample, 90% intervals",
                  x=0.01, ha="left", fontsize=11, color=MUTED, y=1.02)
     fig.tight_layout(w_pad=3.0)
     fig.savefig(path, bbox_inches="tight", pad_inches=0.05)
